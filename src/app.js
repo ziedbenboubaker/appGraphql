@@ -6,12 +6,10 @@ const logger = require("morgan");
 const dotenv = require("dotenv");
 
 dotenv.config();
-const connectDB = require("./db");
-const models = require("./models");
 const schema = require("./graphql");
+const { RestApi } = require("./graphql/datasources");
 
 const app = express();
-connectDB().then();
 
 app.use(compression());
 app.use(helmet({ contentSecurityPolicy: false }));
@@ -19,7 +17,9 @@ app.use(logger("dev"));
 
 const apolloServer = new ApolloServer({
   schema,
-  context: { models },
+  dataSources: () => ({
+    restApi: new RestApi(),
+  }),
 });
 
 apolloServer.start().then(() => {

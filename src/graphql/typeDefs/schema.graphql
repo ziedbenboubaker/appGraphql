@@ -5,30 +5,21 @@ schema {
 
 
 type Query {
-    #lists
-    getLists(name:String!):List!
+    #list
+    getList(name: String!): List!
 
-    #items
-    getItems(listId: ID!): Item!
+    #item
+    getItems(listId: ID!): [Item!]!
 }
 
 type Mutation {
-    #list
-    createList(input: ListInput!): List!
-
     #item
     createItem(input: ItemInput!): Item!
-    deleteItem(id: ID!): Boolean
+    deleteItem(id: ID!): Item!
 }
 
 type List {
     id: ID!
-    name: String!
-    createdAt: Float!
-    updatedAt: Float!
-}
-
-input ListInput {
     name: String!
 }
 
@@ -36,8 +27,6 @@ type Item {
     id: ID!
     name: String!
     listId: ID!
-    createdAt: Float!
-    updatedAt: Float!
 }
 
 input ItemInput {

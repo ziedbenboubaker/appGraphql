@@ -1,3 +1,3 @@
-const getLists = require("./getLists");
+const getList = require("./getList");
 
-module.exports = { getLists };
+module.exports = { getList };

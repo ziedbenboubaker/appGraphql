@@ -1,5 +1,5 @@
-const resolver = function (_, { listId }, { models: { ItemModel } }) {
-  return ItemModel.find(listId);
+const resolver = function (_, { listId }, { dataSources: { restApi } }) {
+  return restApi.getItemsByListId(listId);
 };
 
 module.exports = resolver;
