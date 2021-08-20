@@ -1,0 +1,47 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+
+type Query {
+    #lists
+    getLists(name:String!):List!
+
+    #items
+    getItems(listId: ID!): Item!
+}
+
+type Mutation {
+    #list
+    createList(input: ListInput!): List!
+
+    #item
+    createItem(input: ItemInput!): Item!
+    deleteItem(id: ID!): Boolean
+}
+
+type List {
+    id: ID!
+    name: String!
+    createdAt: Float!
+    updatedAt: Float!
+}
+
+input ListInput {
+    name: String!
+}
+
+type Item {
+    id: ID!
+    name: String!
+    listId: ID!
+    createdAt: Float!
+    updatedAt: Float!
+}
+
+input ItemInput {
+    name: String!
+    listId: ID!
+}
+
