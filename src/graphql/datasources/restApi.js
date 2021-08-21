@@ -1,9 +1,11 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
 
+const baseURL = process.env.REST_API_ENDPOINT || "http://localhost:5001/api/";
+
 class RestApi extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = process.env.REST_API_ENDPOINT;
+    this.baseURL = baseURL;
   }
 
   parseBody(response) {
